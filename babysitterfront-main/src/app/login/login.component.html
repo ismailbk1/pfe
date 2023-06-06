@@ -1,0 +1,87 @@
+<nav class="navbar">
+	<div class="container">
+	  <h1 class="logo">BOBOSITE</h1>
+	  <ul class="nav">
+		<li><a href="">Home</a></li>
+		<li><a href="/insr">Inscrire</a></li>
+		<!-- <li><a href="#specs">Specs</a></li>
+				  <li><a href="#contact">Contact</a></li> -->
+	  </ul>
+	</div>
+  </nav>
+<div class="formvide">
+<section class="vh-100">
+	<div class="container-fluid">
+	  <div class="row">
+		<div class="col-sm-6 text-black">
+			<div class="d-flex justify-content-center">
+<div id="formContent">
+<div class="alert alert-warning" *ngIf='invalidLogin'>{{ errorMessage}}</div>
+<div class="alert alert-success" *ngIf=' loginSuccess'>{{successMessage}}</div>
+</div>
+				<section class="vh-100">
+			<form [formGroup]="inputFormulaire" style="width: 23rem;" (ngSubmit)="Login()" >
+  
+				<h2  class="m-b0">Bienvenue sur BOBOSite</h2>
+			<br>
+			<br>
+			  <div class="form-outline mb-4">
+				<input type="email" id="form2Example18"  class="form-control form-control-lg" formControlName="email" 
+				[ngClass]="{'is-invalid': inputFormulaire.get('email')?.touched && inputFormulaire.get('email')?.invalid }">
+                                    <div  class="invalid-feedback" *ngIf="inputFormulaire.get('email')?.invalid && inputFormulaire.get('email')?.touched">
+                                        <span *ngIf="inputFormulaire.get('email')?.errors?.['required']">Veuillez entrer votre adresse e-mail.</span>
+                                        <span *ngIf="inputFormulaire.get('email')?.errors?.['email']">Veuillez entrer une adresse e-mail valide.</span>
+                                      </div>
+				<label class="form-label" for="form2Example18">Email adresse</label>
+				
+				  
+			  </div>
+  
+			  <div class="form-outline mb-4">
+				<input type="password" id="form2Example28" class="form-control form-control-lg" formControlName="password" 
+				[ngClass]="{'is-invalid': inputFormulaire.get('password')?.touched && inputFormulaire.get('password')?.invalid }">
+                                    <div class="invalid-feedback" *ngIf="inputFormulaire.get('password')?.invalid && inputFormulaire.get('password')?.touched" >
+                                        <span *ngIf="inputFormulaire.get('password')?.hasError('required')">Veuillez entrer un mot de passe.</span>
+									</div>
+
+				<label class="form-label" for="form2Example28">Mot de Passe </label>
+					
+				
+				  
+			  </div>
+			  <div class="form-group mb-4">
+				<label>Vous avez:</label>
+				<select formControlName="role" class="form-control form-control-lg" formControlName="role"required placeholder="choisir"  [ngClass]="{'is-invalid': inputFormulaire.get('role')?.touched && inputFormulaire.get('role')?.invalid }">
+				  <option value="" disabled selected>Choisir :</option>
+				  <option value="admin">Admin</option>
+				  <option value="babysitter">Babysitter</option>
+				  <option value="parent">Parent</option>
+				</select>
+				<div class="invalid-feedback"*ngIf=" inputFormulaire.get('role')?.invalid && inputFormulaire.get('role')?.touched " >
+					<span *ngIf="inputFormulaire.get('role')?.errors?.['required']">le Role est obligatoire.</span>  </div>
+   
+			  </div>
+  <!-- Alert message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+			  <div class="pt-1 mb-4">
+				<button class="btn btn-info btn-lg btn-block" type="submit">Conexion</button>
+			  </div>
+  
+			  <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
+			  <p>tu n'a pas un compte ? <a href="/insr" class="link-info">Inscrire</a></p>
+  
+			</form>
+		</section>
+		  </div>
+		
+		</div>
+		<div class="col-sm-6 px-0 d-none d-sm-block">
+			<img src="assets/images/11.jpg"
+			alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+		</div>
+	  </div>
+	</div>
+  </section>
+</div>

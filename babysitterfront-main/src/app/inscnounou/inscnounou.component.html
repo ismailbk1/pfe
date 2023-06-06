@@ -1,0 +1,217 @@
+<app-header></app-header>
+
+<div class="landing-page">
+  <div class="content">
+    <div class="container">
+      <div class="info">
+        
+        <h2>Créer votre profil Babysitter</h2>
+        <p>Ça prend uniquement 5 secondes </p>
+        <form method="post" class="dzForm col-md-12"  [formGroup]="monForm"  (ngSubmit)="onsubmit()" >
+          <div class="image-upload">
+            <input type="file" id="image" (change)="onFileSelected($event)" accept="image/*" />
+            <label for="image" class="image-label">
+              <div class="image-preview" [ngStyle]="{'background-image': 'url(' + selectedImageUrl + ')'}"></div>
+              <i class="fas fa-camera"></i>
+            </label>
+          </div>
+          <input type="hidden" value="Contact" name="dzToDo">
+          <div class="row">
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Entrer votre Nom :<span class="red"> *</span></label>
+                      <input name="dzName" type="text" required class="form-control" placeholder="Nom"  formControlName="nom" [ngClass]="{'is-invalid': monForm.get('nom')?.touched && monForm.get('nom')?.invalid }" minlength="4"/>
+      
+                      <div class="invalid-feedback"*ngIf=" monForm.get('nom')?.invalid && monForm.get('nom')?.touched " >
+                        <span *ngIf="monForm.get('nom')?.errors?.['required']">Le nom est obligatoire.</span>  
+                        <span *ngIf="!isCaracteresUniquement(monForm.get('nom')?.value)">Veuillez entrer uniquement des caractères alphabétiques.</span>
+                      </div>
+                        
+           
+                      </div>
+                      </div>
+      
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Entrer votre Penom:<span class="red"> *</span></label>
+                      <input name="dzEmail" type="text" class="form-control" required  placeholder="Prenom" formControlName="prenom"
+                       [ngClass]="{'is-invalid': monForm.get('prenom')?.touched && monForm.get('prenom')?.invalid }" minlength="4">
+                      
+                      <div class="invalid-feedback" *ngIf=" monForm.get('prenom')?.invalid && monForm.get('prenom')?.touched " >
+                          <span *ngIf="monForm.get('prenom')?.errors?.['required'] ">Le nom est obligatoire.</span>  
+                          <span *ngIf="!isCaracteresUniquement(monForm.get('prenom')?.value)">Veuillez entrer uniquement des caractères alphabétiques.</span>
+                        </div>
+                  </div>
+              </div>
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Entrer votre Email :<span class="red"> *</span></label>
+                      <input name="dzEmail" type="email" class="form-control" required  placeholder="l'adresse Email" formControlName="email"
+                      [ngClass]="{'is-invalid': monForm.get('email')?.touched && monForm.get('email')?.invalid }">
+                      <div  class="invalid-feedback" *ngIf="monForm.get('email')?.invalid && monForm.get('email')?.touched">
+                          <span *ngIf="monForm.get('email')?.errors?.['required']">Veuillez entrer votre adresse e-mail.</span>
+                          <span *ngIf="monForm.get('email')?.errors?.['email']">Veuillez entrer une adresse e-mail valide.</span>
+                        </div>
+                  </div>
+              </div>
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Numero de Telephone :<span class="red"> *</span></label>
+                      <input name="dzOther[Phone]" type="text" required class="form-control" placeholder=" Telephone" formControlName="tel"
+                      [ngClass]="{'is-invalid': monForm.get('tel')?.touched && monForm.get('tel')?.invalid }">
+                      <div class="invalid-feedback" *ngIf="monForm.get('tel')?.invalid && monForm.get('tel')?.touched">
+                          <span *ngIf="monForm.get('tel')?.hasError('required')">Veuillez entrer un numéro de téléphone.</span>
+                          <span *ngIf="monForm.get('tel')?.hasError('invalidTelephone')">Veuillez entrer un numéro de téléphone valide (8 chiffres).</span>
+                        </div>
+                  </div>
+              </div>
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Votre Adresse :<span class="red"> *</span></label>
+                      <input name="dzEmail" type="text" class="form-control" required  placeholder="Adresse" formControlName="adresse"
+                      [ngClass]="{'is-invalid': monForm.get('adresse')?.touched && monForm.get('adresse')?.invalid }" minlength="4">
+                      
+                      <div class="invalid-feedback" *ngIf=" monForm.get('adresse')?.invalid && monForm.get('adresse')?.touched " >
+                          <span *ngIf="monForm.get('adresse')?.errors?.['required'] ">Le nom est obligatoire.</span>  
+                        </div>
+                  </div>
+              </div>
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Mot de Passe :<span class="red"> *</span></label>
+                      <input name="dzP" type="password" class="form-control" required  placeholder="Mot de passe" formControlName="motDePasse" 
+                      [ngClass]="{'is-invalid': monForm.get('motDePasse')?.touched && monForm.get('motDePasse')?.invalid }">
+                      <div class="invalid-feedback" *ngIf="monForm.get('motDePasse')?.invalid && monForm.get('motDePasse')?.touched">
+                          <span *ngIf="monForm.get('motDePasse')?.hasError('required')">Veuillez entrer un mot de passe.</span>
+                          <span *ngIf="monForm.get('motDePasse')?.hasError('pattern')">Le mot de passe doit contenir à la fois des caractères et des chiffres.</span>
+                        </div>
+                  </div>
+              </div>
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Confirmer votre Mot de Passe:<span class="red"> *</span></label>
+                      <input name="dzPa" type="password" class="form-control" required  placeholder="Confirmer Mot de passe" formControlName="confirmationMotDePasse" 
+                      [ngClass]="{'is-invalid': monForm.get('confirmationMotDePasse')?.touched && monForm.get('confirmationMotDePasse')?.invalid }">
+      
+                      <div class="invalid-feedback" *ngIf="monForm.get('confirmationMotDePasse')?.invalid && monForm.get('confirmationMotDePasse')?.touched">
+                          <span *ngIf="monForm.get('confirmationMotDePasse')?.hasError('required')">Veuillez entrer un mot de passe.</span>
+                          <span *ngIf="monForm.get('confirmationMotDePasse')?.hasError('pattern')">Le mot de passe doit contenir à la fois des caractères et des chiffres.</span>
+                        </div>
+                      <div class="invalid-feedback" *ngIf="monForm.hasError('correspondanceMotsDePasse') && monForm.get('confirmationMotDePasse')?.dirty">
+                          <span>Les mots de passe ne correspondent pas.</span>
+                        </div>
+                  </div>
+              </div>
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Entrer votre Niveau:<span class="red"> *</span></label>
+                      <input name="nivea" type="text" class="form-control" required  placeholder="Niveau Scolaire" formControlName="niveau"
+                       [ngClass]="{'is-invalid': monForm.get('niveau')?.touched && monForm.get('niveau')?.invalid }" minlength="4">
+                      
+                      <div class="invalid-feedback" *ngIf=" monForm.get('niveau')?.invalid && monForm.get('niveau')?.touched " >
+                          <span *ngIf="monForm.get('niveau')?.errors?.['required'] ">votre niveau scolaire et obligatoire.</span>  
+                          
+                        </div>
+                  </div>
+              </div>
+      <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+                      <label for="pet-select">Entrer votre Date de Naissance:<span class="red"> *</span></label>
+                      <input name="datee" type="date" class="form-control" required  placeholder="Date" formControlName="dateNaissance"
+      
+                      [ngClass]="{'is-invalid': monForm.get('dateNaissance')?.touched && monForm.get('dateNaissance')?.invalid }" >
+                      <div class="invalid-feedback" *ngIf="monForm.get('dateNaissance')?.invalid && monForm.get('dateNaissance')?.touched">
+                          <span *ngIf="monForm.get('dateNaissance')?.hasError('required')">Veuillez entrer une date de naissance.</span>
+                          <span *ngIf="monForm.get('dateNaissance')?.hasError('dateNaissanceInvalide')">La date de naissance ne doit pas dépasser l'année 2002.</span>
+                        </div>
+                  </div>
+              </div>
+
+              <div class="col-md-6 form-group">
+                  <div class="infoRequired">
+              <label for="pet-select">choisir:<span class="red"> *</span></label>
+      
+
+              <select name="niveau" id="pet-select" class="form-control" required placeholder="choisir" formControlName="genre"required placeholder="choisir"  [ngClass]="{'is-invalid': monForm.get('genre')?.touched && monForm.get('genre')?.invalid }">
+                  <option value="" disabled selected>Choisir sexe</option>
+                  <option value="femme">Femme</option>
+                  <option value="Homme">Homme</option>  
+                 </select>
+      
+                 <div class="invalid-feedback"*ngIf=" monForm.get('genre')?.invalid && monForm.get('genre')?.touched " >
+                  <span *ngIf="monForm.get('genre')?.errors?.['required']">le sexe est obligatoire.</span>  </div>
+ 
+      
+      </div>
+      </div>
+
+      <div class="col-md-6 form-group">
+        <div class="infoRequired">
+   
+
+       <fieldset required [ngClass]="{'is-invalid': monForm.get('exp')?.touched && monForm.get('exp')?.invalid }" >
+        <legend>Experience:</legend>
+  
+        <div>
+        <input type="radio" id="huey"  value="pas d'experience"
+               formControlName="exp"  checked>
+        <label for="huey">pas d'experience</label>
+        </div>
+  
+        <div>
+        <input type="radio" id="dewey"value="moins de 6 mois" formControlName="exp">
+        <label for="dewey">moins de 6 mois</label>
+       </div>
+  
+        <div>
+        <input type="radio" id="louie" value="plus de 1 ans" formControlName="exp">
+        <label for="louie">plus de 1 ans </label>
+        </div>
+        </fieldset>
+        <div class="invalid-feedback"*ngIf=" monForm.get('exp')?.invalid && monForm.get('exp')?.touched " >
+          <span *ngIf="monForm.get('exp')?.errors?.['required']">la description est obligatoire.</span>  
+        </div>
+          </div>
+          </div>
+        
+          
+          
+
+          <div class="col-md-12">
+            <div class="infoRequired">
+                <label for="pet-select">Description:<span class="red"> *</span></label>
+                <textarea name="message" id="message" class="form-control" rows="5" placeholder="Décrivez vous en quelque mots  " formControlName="mess" [ngClass]="{'is-invalid': monForm.get('mess')?.touched && monForm.get('mess')?.invalid }" ></textarea>
+
+                <div class="invalid-feedback"*ngIf=" monForm.get('mess')?.invalid && monForm.get('mess')?.touched " >
+                  <span *ngIf="monForm.get('mess')?.errors?.['required']">la description est obligatoire.</span>  
+                </div>
+                  
+     
+                </div>
+                </div>   
+              
+         <div class="col-md-12">
+                  <button name="submit" type="submit" value="Submit"  class="button1">Valider<span></span></button>
+              </div>
+              
+          </div>
+      </form>
+       
+      </div>
+      <div class="image">
+        <img src="https://i.postimg.cc/65QxYYzh/001234.png">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Landing Page -->
+
+
+
+
+
+
+
+
+
+

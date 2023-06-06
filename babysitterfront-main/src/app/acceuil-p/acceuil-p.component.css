@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+.fullwidth {max-width: 75%; height: auto;}
+.-spacing {
+  &-a {
+    margin-top: 3.125rem;
+  }
+  &-b {
+    margin-top: 1.875rem;
+  }
+}
+
+.-typo {
+  &-copy {
+    margin-bottom: 1.875rem;
+    color: secondary-font-color;
+    font-size: 1rem;
+    font-family: primary-font;
+    
+    &--blue {color: primary-font-color;}
+  }
+}
+
+.profile-image {
+  overflow: hidden;
+  
+  &:hover {
+    .edit-profile-image {
+      opacity: 1;
+    }
+  }
+}
+
+.edit-profile-image {
+  width: auto;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0.9375rem;
+  right: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem;
+  cursor: pointer;
+  opacity: 0;
+  
+  
+  
+  &__information {
+    color: #FFF;
+    font-size: 1.125rem;
+  }
+  
+  &__label {
+    margin-left: 0.5rem;
+    display: inline-block;
+    font-family: primary-font;
+  }
+}
+
+
+   .box{
+     margin-top:10%;
+     margin-left:30%;
+     
+     
+   }
+   input{ 
+       position: relative;
+       display: inline-block;
+       transition: .5s;
+       font-size: 20px;
+       box-sizing: border-box;
+       border-radius: 20px;
+   }
+   
+   input[type="text"]{
+       background: #dd86f0bf;
+       width: 440px;
+       height: 50px;
+       border: none;
+       outline: none;
+       padding: 0 25px;
+       border-radius: 25px 0 0 25px;
+     
+     }
+   input[type="submit"]{
+     position: relative!important;
+     left: -5px;
+     border-radius: 0 25px 25px 0;
+     width: 150px;
+     height: 50px;
+     border: none;
+     outline: none;
+     background:#700d6d;
+     color:white;
+     font-weight:70px;
+     cursor: pointer;
+   }
+   input[type="submit"]:hover{
+     background-color:#7B7B7F;
+     color:black;
+   }
+   @media screen and (max-width: 1000px) and (min-width: 800px){
+     
+   
+     input[type="text"] {
+       width: 100px;
+       
+     }
+     input[type="submit"]{
+       width:75px;
+     }
+   }
+   
+   @media screen and (max-width: 800px) {
+     input[type="text"] {
+       width: 200px;
+          
+     }
+     input[type="submit"]{
+       width:90px;
+     }
+   }
+
+
