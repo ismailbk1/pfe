@@ -23,18 +23,18 @@ import lombok.ToString;
 @ToString
 @Data @NoArgsConstructor @AllArgsConstructor
 public class ChatMessage {
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long idmes;
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
-	private String message;
+	private String content;
 	
 	private Long idsender ;
 
 	private Long idreceiver ;
 
 	public ChatMessage(String message, Long idsender, Long idreceiver) {
-		super();
-		this.message = message;
+		
+		this.content = message;
 		this.idsender = idsender;
 		this.idreceiver = idreceiver;
 	}

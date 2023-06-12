@@ -14,7 +14,7 @@ public class chatService {
 	@Autowired
 	ChatMessageRepository chatR ;
 	
-	public String addMessage(Long sender,Long reciver,String message) {
+	/*public String addMessage(Long sender,Long reciver,String message) {
 		
 		return chatR.save(new ChatMessage(message,sender,reciver)).getMessage();
 		
@@ -26,7 +26,6 @@ public class chatService {
 		return chatR.findByIdreceiverAndIdsenderOrIdreceiverAndIdsender(idreciver, idcender,idcender ,idreciver);
 		
 		 
-	} 
-	
+	} */
 
 }

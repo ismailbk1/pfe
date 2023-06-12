@@ -1,6 +1,6 @@
+import { Component, OnInit } from '@angular/core';
 import { babysitter } from './../models/babysitter.model';
 import { BabysitterService } from './../services/babysitter.service';
-import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import { parent } from '../models/parent.model';
 import { ActivatedRoute } from '@angular/router';
@@ -8,19 +8,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChatMessage } from '../models/chat.model';
 
 @Component({
-  selector: 'app-chat-p',
-  templateUrl: './chat-p.component.html',
-  styleUrls: ['./chat-p.component.css']
+  selector: 'app-chatparentlist',
+  templateUrl: './chatparentlist.component.html',
+  styleUrls: ['./chatparentlist.component.css']
 })
-export class ChatPComponent implements OnInit{
+export class ChatparentlistComponent implements OnInit{
   chatMessages!: ChatMessage[];
   senderId!: number;
   recipientId!: number;
   newMessage!: string;
   chatmsg:ChatMessage=new ChatMessage;
   babysitter!:babysitter;
+  babysitterList:babysitter[]=[]
+  selectedUser!:babysitter
+
 idparent!:number;
-babysitterList:babysitter[]=[]
   constructor(private chatService: ChatService , private route:ActivatedRoute ,private babysitterService:BabysitterService) {
 
     const loggedInUser = sessionStorage.getItem('loggedInUser');
@@ -31,23 +33,20 @@ babysitterList:babysitter[]=[]
       this.idparent=user.user.idParent;
       
     }
-    this.route.params.subscribe(params => {
-      this.recipientId = params['idbabysitter'];
-      
-    });
+   
    
     this.senderId =this.idparent;
-    this.recipientId=+this.recipientId;
+  //  this.recipientId=+this.recipientId;
    }
 
   ngOnInit() {
     // Définir les IDs du sender et du recipient (Parent ou Babysitter) en fonction de la logique de votre application
-   
+    
     this.getListbabysitter(this.senderId);
     console.log(    this.getListbabysitter(this.senderId))
-    this.recipientId=this.recipientId;
-    this.getnounouById(this.recipientId);
-    this.loadChatMessages();
+   // this.recipientId=this.recipientId;
+   // this.getnounouById(this.recipientId);
+    //this.loadChatMessages();
   }
 
   loadChatMessages() {
@@ -59,13 +58,7 @@ babysitterList:babysitter[]=[]
   sendMessage() {
     this.chatmsg.content=this.newMessage;
     this.chatmsg.idsender=this.senderId;
-    this.chatmsg.idreceiver=this.recipientId;
-    // const chatMessage: ChatMessage = {
-    //   content: this.newMessage,
-    //   senderId: this.senderId,
-    //   recipientId: this.recipientId,
-     
-    // };
+    this.chatmsg.idreceiver=this.recipientId; 
    this.chatService.sendMessage(this.chatmsg).subscribe(
     () => {
       console.log("messgae send avec success ");
@@ -83,7 +76,6 @@ this.babysitter=data;
     }
   )
  }
- 
  getListbabysitter(senderid:number){
   this.chatService.getListBabysitterChat(senderid).subscribe(
 
@@ -96,6 +88,12 @@ this.babysitter=data;
     }
     )
   
+ }
+ onUserSelect(babysitter:babysitter):void{
+  this.selectedUser=babysitter;
+this.getnounouById(this.selectedUser.idbabysitter);
+this.recipientId=this.selectedUser.idbabysitter;
+this.loadChatMessages()
  }
  
  

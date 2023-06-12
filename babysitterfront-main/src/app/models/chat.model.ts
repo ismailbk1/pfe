@@ -1,8 +1,8 @@
-export class chat {
-    idmes!:number ;
-    message!:String;
-    idsender!:number ;
-    idreceiver!:number;
-
-
-}
+export class ChatMessage {
+    id!: number;
+    idsender!: number;
+    idreceiver!: number;
+    content!: string
+    //timestamp!:string;
+    // Autres attributs
+  }

@@ -18,7 +18,7 @@ export class AdminService {
   }
  
   addParent(admins:any):Observable<Admin>{
-   return this.httpclt.post<Admin>("http://localhost:8087/addAdm",admins);}
+   return this.httpclt.post<Admin>("http://localhost:8083/addAdm",admins);}
 
 
 }

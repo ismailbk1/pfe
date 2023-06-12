@@ -8,6 +8,7 @@ import { babysitter } from '../models/babysitter.model';
   providedIn: 'root'
 })
 export class BabysitterService {
+ 
 
   item = new BehaviorSubject(0);
   counter=0
@@ -23,7 +24,7 @@ export class BabysitterService {
      babysitterData.forEach((value, key) => {
     console.log(`Key: ${key}, Value: ${value}`);
   });
-    return this.httpclt.post<babysitter>("http://localhost:8087/addbabysitter",babysitterData)}
+    return this.httpclt.post<babysitter>("http://localhost:8083/addbabysitter",babysitterData)}
  
 
   increment(){
@@ -33,45 +34,45 @@ export class BabysitterService {
 
    getAllNounou():Observable<babysitter[]>{
 
-    return this.httpclt.get<babysitter[]>("http://localhost:8087/listeAllbaby")
+    return this.httpclt.get<babysitter[]>("http://localhost:8083/listeAllbaby")
   
      }
      deleteNounou(idbabysitter:any):Observable<babysitter>{
 
-      return this.httpclt.delete<babysitter>("http://localhost:8087/Deletebabysitter/"+idbabysitter)
+      return this.httpclt.delete<babysitter>("http://localhost:8083/Deletebabysitter/"+idbabysitter)
     }
      getnounouById(idbabysitter:any):Observable<babysitter>{
 
-      return this.httpclt.get<babysitter> ("http://localhost:8087/finedidbaby/"+idbabysitter)
+      return this.httpclt.get<babysitter> ("http://localhost:8083/finedidbaby/"+idbabysitter)
     } 
   
     updatenounou(idbabysitter:any,prt:babysitter):Observable<babysitter>{
   
     console.log(prt.nom)
-      return this.httpclt.put<babysitter>("http://localhost:8087/updateBaby/"+idbabysitter,prt)
+      return this.httpclt.put<babysitter>("http://localhost:8083/updateBaby/"+idbabysitter,prt)
     } 
   
     connect(email:string,password:string):Observable<AuthenticatorResponse>{
   
-     return this.httpclt.post<AuthenticatorResponse>("http://localhost:8087/login/",{email:email,password:password})
+     return this.httpclt.post<AuthenticatorResponse>("http://localhost:8083/login/",{email:email,password:password})
   
     }
 
     rechercheBabysitter(adresse:any):Observable<babysitter>{
      
-      return this.httpclt.get<babysitter>("http://localhost:8087/finedadresse/"+adresse)
+      return this.httpclt.get<babysitter>("http://localhost:8083/finedadresse/"+adresse)
 
     }
 
     compterbaby() {
-      return this.httpclt.get<number>("http://localhost:8087/compter3");
+      return this.httpclt.get<number>("http://localhost:8083/compter3");
     }
 
 
     updateuser(idbabysitter:any,user:any):Observable<babysitter>{
   
       
-      return this.httpclt.put<babysitter>("http://localhost:8087/updateBaby/"+idbabysitter,user)
+      return this.httpclt.put<babysitter>("http://localhost:8083/updateBaby/"+idbabysitter,user)
     } 
 
 

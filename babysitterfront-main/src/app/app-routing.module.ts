@@ -25,6 +25,8 @@ import { AcceuilBabysitterComponent } from './acceuil-babysitter/acceuil-babysit
 import { ListeReservationParentComponent } from './liste-reservation-parent/liste-reservation-parent.component';
 import { ListeReservationBabysComponent } from './liste-reservation-babys/liste-reservation-babys.component';
 import { AcceuilAdminComponent } from './acceuil-admin/acceuil-admin.component';
+import { ChatparentlistComponent } from './chatparentlist/chatparentlist.component';
+import { ChatbabysitterComponent } from './chatbabysitter/chatbabysitter.component';
 
 
 
@@ -56,7 +58,9 @@ const routes: Routes = [
   {path:"accbb",component:AcceuilBabysitterComponent},
   {path:"reservb",component:ListeReservationParentComponent},
   {path:"reservp",component:ListeReservationBabysComponent},
-  {path:"acceuiladm",component:AcceuilAdminComponent}
+  {path:"acceuiladm",component:AcceuilAdminComponent},
+  {path:"chatParentList",component:ChatparentlistComponent},
+  {path:"chatBabysitterList",component:ChatbabysitterComponent}
   
 
   

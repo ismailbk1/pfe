@@ -1,53 +1,81 @@
-<section class="msger">
-    <header class="msger-header">
-      <div class="msger-header-title">
-        <i class="fas fa-comment-alt"></i> SimpleChat
-      </div>
-      <div class="msger-header-options">
-        <span><i class="fas fa-cog"></i></span>
-      </div>
-    </header>
-  
-    <main class="msger-chat">
-      <div class="msg left-msg">
-        <div
-         class="msg-img"
+    
+    <div class="container py-5 px-4">
+      <div class="row rounded-lg overflow-hidden shadow">
+        <!-- Users box-->
+        <div class="col-5 px-0">
+          <div class="bg-white">
+    
+            <div class="bg-gray px-4 py-2 bg-light">
+              <p class="h5 mb-0 py-1">Babysitter</p>
+            </div>
+    
+            <div class="messages-box">
+              <div class="list-group rounded-0" >
+                <a 
+                  class="list-group-item list-group-item-action rounded-0" style="cursor: pointer;">
+                  <div class="media align-items-center"><img src="assets/images/{{ babysitter.image }}"
+                      alt="user" width="50" class="rounded-circle">
+                    <div class="media-body ml-4">
+                      <div class="d-flex align-items-center justify-content-between ">
+                        <h6 class="mb-0">{{babysitter.nom}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    
+    <!-- Chat Box-->
+    <div class="col-7 px-0">
+      
+      <div class="px-4 py-5 chat-box bg-white">
+        <!-- <h3 class="bg-gray bg-light">{{selectedUser.username}}</h3> -->
+        <!-- <div class="bg-gray px-4 py-2 bg-light">
+          <p class="h5 mb-0 py-1">{{selectedUser.username}}</p>
+        </div> -->
         
-        ></div>
-  
-        <div class="msg-bubble">
-          <div class="msg-info">
-            <div class="msg-info-name">BOT</div>
-            <div class="msg-info-time">12:45</div>
+        <div *ngFor="let message of chatMessages" >
+          <!-- Sender Message-->
+          <div class="media w-50 mb-3" *ngIf="message.idsender === senderId">
+            <img
+              src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50"
+              class="rounded-circle">
+            <div class="media-body ml-3">
+              <div class="bg-light rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-muted"> {{ message.content }}</p>
+              </div>
+            </div>
           </div>
-  
-          <div class="msg-text">
-            Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
+
+          <!-- Reciever Message-->
+          <div id="receiver" class="media w-50 ml-auto mb-3"  *ngIf="message.idsender === recipientId" style="
+          margin-left: 370px;">
+          <img  class="rounded-circle"
+          src="assets/images/{{ babysitter.image }}" alt="user" width="40">
+            <div class="media-body">
+              <div class="bg-primary rounded py-2 px-3 mb-2" >
+                <p class="text-small mb-0 text-white">{{ message.content }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Typing area -->
+      <div class="bg-light">
+        <div class="input-group">
+          <input type="text" placeholder="Type a message"
+          [(ngModel)]="newMessage" class="form-control rounded-0 border-0 py-4 bg-light">
+          <div class="input-group-append">
+            <button (click)="sendMessage()" class="btn btn-link">Send</button>
           </div>
         </div>
       </div>
+
+    </div>
+
   
-      <div class="msg right-msg">
-        <div
-         class="msg-img"
-       
-        ></div>
-  
-        <div class="msg-bubble">
-          <div class="msg-info">
-            <div class="msg-info-name">Sajad</div>
-            <div class="msg-info-time">12:46</div>
-          </div>
-  
-          <div class="msg-text">
-            You can change your name in JS section!
-          </div>
-        </div>
-      </div>
-    </main>
-  
-    <form class="msger-inputarea">
-      <input type="text" class="msger-input" id="champs" placeholder="Enter your message...">
-      <button type="submit" class="msger-send-btn"(click)="envoi()">Envoyer</button>
-    </form>
-  </section>

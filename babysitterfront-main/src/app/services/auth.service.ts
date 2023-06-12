@@ -8,7 +8,7 @@ import { Admin } from '../models/Admin.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8087/auth/'
+  private apiUrl = 'http://localhost:8083/auth/'
 
 
   constructor(private http:HttpClient) { }

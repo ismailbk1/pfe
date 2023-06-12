@@ -20,7 +20,7 @@ item = new BehaviorSubject(0);
   }
  
   addParent(parents:any):Observable<parent>{
-   return this.httpclt.post<parent>("http://localhost:8087/addparent",parents);}
+   return this.httpclt.post<parent>("http://localhost:8083/addparent",parents);}
 
 
   increment(){
@@ -28,40 +28,40 @@ item = new BehaviorSubject(0);
 
    getAllParents():Observable<parent[]>{
 
-  return this.httpclt.get<parent[]>("http://localhost:8087/listep");
+  return this.httpclt.get<parent[]>("http://localhost:8083/listep");
 
    }
 
   deleteParent(idParent:any):Observable<parent>{
 
-    return this.httpclt.delete<parent>("http://localhost:8087/Deleteparent/"+idParent)
+    return this.httpclt.delete<parent>("http://localhost:8083/Deleteparent/"+idParent)
   }
   
   getParentById(idParent:any):Observable<parent>{
 
-    return this.httpclt.get<parent> ("http://localhost:8087/finedid/"+idParent)
+    return this.httpclt.get<parent> ("http://localhost:8083/finedid/"+idParent)
   } 
 
   updateuser(idParent:any,prt:parent):Observable<parent>{
 
   console.log(prt.nom)
-    return this.httpclt.put<parent>("http://localhost:8087/updateparent/"+idParent,prt)
+    return this.httpclt.put<parent>("http://localhost:8083/updateparent/"+idParent,prt)
   } 
 
   login(email:String,password:String){
 
-   return this.httpclt.post<parent>("http://localhost:8087/login", {email: email,password: password})
+   return this.httpclt.post<parent>("http://localhost:8083/login", {email: email,password: password})
 
   }
   compterParents() {
-    return this.httpclt.get<number>("http://localhost:8087/compter");
+    return this.httpclt.get<number>("http://localhost:8083/compter");
   }
 
   compterUtilisateurs()
 {
-  return this.httpclt.get<number>("http://localhost:8087/compter1");
+  return this.httpclt.get<number>("http://localhost:8083/compter1");
 }
-  
+
 
 
   

@@ -30,6 +30,8 @@ import { ListeReservationParentComponent } from './liste-reservation-parent/list
 import { ListeReservationBabysComponent } from './liste-reservation-babys/liste-reservation-babys.component';
 import { CommonModule } from '@angular/common';
 import { AcceuilAdminComponent } from './acceuil-admin/acceuil-admin.component';
+import { ChatbabysitterComponent } from './chatbabysitter/chatbabysitter.component';
+import { ChatparentlistComponent } from './chatparentlist/chatparentlist.component';
 
 
 
@@ -64,6 +66,8 @@ import { AcceuilAdminComponent } from './acceuil-admin/acceuil-admin.component';
     ListeReservationParentComponent,
     ListeReservationBabysComponent,
     AcceuilAdminComponent,
+    ChatbabysitterComponent,
+    ChatparentlistComponent,
 
    
    
